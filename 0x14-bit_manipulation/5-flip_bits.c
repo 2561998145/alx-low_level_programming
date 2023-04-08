@@ -2,26 +2,24 @@
 #include <stdio.h>
 
 /**
-
-flip_bits - calculate the number of bits to be flipped to convert one number to another number
-
-@n: the first number
-
-@m: the second number to be converted to
-
-Return: the number of bits that need to be flipped
-*/
+ * flip_bits - flip bits to convert one number to another number
+ * @n: first number
+ * @m: second number to convert to
+ * Return: number of bits that was needed to flip
+ */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-unsigned long int diff = n ^ m; // calculate the XOR difference between n and m
-int counter = 0;
+	unsigned long int diff;
+	int counter;
 
-// count the number of set bits in the difference using the Brian Kernighan's algorithm
-while (diff != 0)
-{
-counter++;
-diff &= (diff - 1);
-}
+	diff = n ^ m;
+	counter = 0;
 
-return counter;
+	while (diff)
+	{
+		counter++;
+		diff &= (diff - 1);
+	}
+
+	return (counter);
 }
